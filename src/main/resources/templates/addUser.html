@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new user </title>
+</head>
+
+<body>
+<h1>Create new user profile</h1>
+
+<form action="#" th:action="@{/addUser}" th:object="${user}" method="post">
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" th:field="*{firstName}"/></td>
+            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name error</td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td> <input type="text" th:field="*{lastName}"/></td>
+            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Middle Name:</td>
+            <td> <input type="text" th:field="*{middleName}"/></td>
+            <td th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td> <input type="number" th:field="*{age}"/></td>
+            <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Salary: </td>
+            <td><input type="number" th:field="*{salary}"/></td>
+            <td th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input type="text" th:field="*{email}"/></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Working Place:</td>
+            <td> <input type="text" th:field="*{workPlace}"/></td>
+            <td th:if="${#fields.hasErrors('workPlace')}" th:errors="*{workPlace}">Name Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button> <button type="reset">reset</button> </td>
+        </tr>
+    </table>
+
+    <div th:if="${existMessage}" th:utext="${existMessage}"
+         style="color:#0a00ff;font-style:italic; font-size: medium">
+    </div>
+</form>
+
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:#800400;font-style:italic; font-size: medium">
+</div>
+
+<br/>
+
+<form  method="post" enctype="multipart/form-data" action="/addUsers">
+    <p>Upload File<input th:type="file" name="file"></p>
+    <input type="submit" value="upload" />
+</form>
+
+<h3>Helpful links</h3>
+<p>
+    <a th:href="@{/allUsers}">See all users</a>
+</p>
+
+<p>
+    <a th:href="@{/findUser}">Find user</a>
+</p>
+
+</body>
+</html>

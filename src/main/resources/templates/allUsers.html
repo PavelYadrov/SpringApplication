@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Current Users</title>
+    <meta charset="UTF-8" />
+   </head>
+<body>
+<h1>All Users</h1>
+<a th:href="@{/addUser}">Add new user</a>
+<div th:if="${successMessage}" th:utext="${successMessage}"
+     style="color:green;font-style:italic; font-size: medium">
+</div>
+<div>
+    <table border="1" style="width:800px">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Middle Name</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>Email</th>
+            <th>Work Place</th>
+        </tr>
+        <tr th:each ="users : ${users}">
+            <td th:utext="${users.firstName}">...</td>
+            <td th:utext="${users.lastName}">...</td>
+            <td th:utext="${users.middleName}">...</td>
+            <td th:utext="${users.age}">...</td>
+            <td th:utext="${users.salary}">...</td>
+            <td th:utext="${users.email}">...</td>
+            <td th:utext="${users.workPlace}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

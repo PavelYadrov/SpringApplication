@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Current Users</title>
+    <meta charset="UTF-8" />
+</head>
+<br>
+<h1>Found Users</h1>
+
+<div>
+    <table border="1" style="width:800px">
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Middle Name</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>Email</th>
+            <th>Work Place</th>
+        </tr>
+        <tr th:each ="found : ${found}">
+            <td th:utext="${found.id}">...</td>
+            <td th:utext="${found.firstName}">...</td>
+            <td th:utext="${found.lastName}">...</td>
+            <td th:utext="${found.middleName}">...</td>
+            <td th:utext="${found.age}">...</td>
+            <td th:utext="${found.salary}">...</td>
+            <td th:utext="${found.email}">...</td>
+            <td th:utext="${found.workPlace}">...</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td>Current date - </td>
+            <td th:utext="${date}"></td>
+        </tr>
+        <tr>
+            <td>Current user - </td>
+            <td th:utext="${agent}"></td>
+        </tr>
+    </table>
+</div>
+
+<h2>Send mail </h2>
+    <form action="#" th:action="@{/findResult}" th:object="${message}" method="post">
+        <table>
+            <tr>
+                <td>Id:</td>
+                <td><input type="number" th:field="*{id}"/></td>
+                <td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name error</td>
+            </tr>
+            <tr>
+                <td>Subject:</td>
+                <td><input type="text" th:field="*{subject}"/></td>
+                <td th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}">Name error</td>
+            </tr>
+            <tr>
+                <td>Message:</td>
+                <td><input type="text" th:field="*{text}"/></td>
+                <td th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Name error</td>
+            </tr>
+            <tr>
+                <td><button type="submit">Send</button> <button type="reset">Reset</button> </td>
+            </tr>
+        </table>
+    </form>
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:#800d0b;font-style:italic; font-size: medium">
+</div>
+</div>
+</br>
+<a th:href="@{/addUser}">Add new user</a>
+</br>
+</br>
+<a th:href="@{/findUser}">Find another user</a>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Find user</title>
+
+</head>
+<body>
+<h1>Find user</h1>
+
+<form action="#" th:action="@{/findUser}" th:object="${find}" method="post">
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" th:field="*{firstName}"/></td>
+            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name error</td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td> <input type="text" th:field="*{lastName}"/></td>
+            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button> <button type="reset">reset</button> </td>
+        </tr>
+    </table>
+</form>
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:#800d0b;font-style:italic; font-size: medium">
+</div>
+
+<div th:if="${successMessage}" th:utext="${successMessage}"
+     style="color:#008033;font-style:italic; font-size: medium">
+</div>
+<p>
+    <a th:href="@{/addUser}">Add new user</a>
+</p>
+<p>
+    <a th:href="@{/allUsers}">All users</a>
+</p>
+</body>
+</html>
